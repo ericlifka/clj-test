@@ -1,6 +1,6 @@
 (ns main)
 
 (defn ^:export main [n]
-  (let [div (.createElement js/document "div")]
+  (let [div (js/document.createElement "div")]
     (aset div "innerHTML" "hiya!")
-    (.appendChild js/document.body div)))
+    (js/document.body.appendChild div)))
