@@ -11,6 +11,7 @@
     :builds [{:source-paths ["src-cljs"]
               :compiler {:output-to "resources/public/js/main.js"
                          :optimizations :whitespace
+                         :print-input-delimiter true
                          :pretty-print true}}]}
   :main ^:skip-aot clj-test.core
   :target-path "target/%s"
