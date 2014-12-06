@@ -1,3 +1,6 @@
-(ns example.hello)
+(ns main)
 
-(js/alert "Hello from ClojureScript!")
+(defn ^:export main [n]
+  (let [div (.createElement js/document "div")]
+    (aset div "innerHTML" "hiya!")
+    (.appendChild js/document.body div)))
