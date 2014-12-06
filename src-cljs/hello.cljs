@@ -7,6 +7,15 @@
     (aset div "className" (string/join " " classes))
     div))
 
+(defn create-canvas []
+  (let [width (aget js/window "innerWidth")
+        height (aget js/window "innerHeight")
+        canvas (js/document.createElement "canvas")]
+    (aset canvas "width" width)
+    (aset canvas "height" height)
+    (js/document.body.appendChild canvas)
+    (.getContext canvas "2d")))
+
 (defn ^:export main [n]
-  (let [div (make-div [] "hiya!")]
-    (js/document.body.appendChild div)))
+  (let [context (create-canvas)]
+    true))
