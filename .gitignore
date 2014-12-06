@@ -9,3 +9,5 @@ pom.xml.asc
 /.nrepl-port
 resources/public/js/main.js
 
+.idea/
+clj-test.iml
