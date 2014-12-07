@@ -4,12 +4,20 @@
 (defn create-canvas []
   (let [width (aget js/window "innerWidth")
         height (aget js/window "innerHeight")
-        canvas (js/document.createElement "canvas")]
+        canvas (.createElement js/document "canvas")]
     (aset canvas "width" width)
     (aset canvas "height" height)
-    (js/document.body.appendChild canvas)
+    (.appendChild js/document.body canvas)
     (.getContext canvas "2d")))
+
+(defn render []
+  (.log js/console "frame"))
+
+(defn animate []
+  (render)
+  (.requestAnimationFrame js/window animate))
 
 (defn ^:export main []
   (let [context (create-canvas)]
-    (.fillRect context 10 10 200 200)))
+    (.fillRect context 10 10 200 200)
+    (animate)))
