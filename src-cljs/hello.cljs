@@ -12,4 +12,4 @@
 
 (defn ^:export main [n]
   (let [context (create-canvas)]
-    true))
+    (.fillRect context 10 10 200 200)))
