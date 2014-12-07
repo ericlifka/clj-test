@@ -10,12 +10,8 @@
     (.appendChild js/document.body canvas)
     (.getContext canvas "2d")))
 
-(defn render []
+(defn render [context]
   (.log js/console "frame"))
-
-(defn animate []
-  (render)
-  (.requestAnimationFrame js/window animate))
 
 (defn ^:export main []
   (let [context (create-canvas)]
