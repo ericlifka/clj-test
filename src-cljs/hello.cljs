@@ -18,7 +18,7 @@
 
 (defn render [graphics-context]
   (clear-for-frame graphics-context)
-  (.log js/console "frame"))
+  (.fillRect graphics-context 10 20 200 100))
 
 (defn ^:export main []
   (let [graphics-context (create-canvas)]
