@@ -19,5 +19,7 @@
 
 (defn ^:export main []
   (let [context (create-canvas)]
-    (.fillRect context 10 10 200 200)
-    (animate)))
+    (letfn [(anim-frame []
+              (render context)
+              (.requestAnimationFrame js/window anim-frame))]
+      (anim-frame))))
