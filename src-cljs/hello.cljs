@@ -10,6 +10,6 @@
     (js/document.body.appendChild canvas)
     (.getContext canvas "2d")))
 
-(defn ^:export main [n]
+(defn ^:export main []
   (let [context (create-canvas)]
     (.fillRect context 10 10 200 200)))
