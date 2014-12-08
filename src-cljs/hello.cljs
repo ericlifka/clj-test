@@ -28,7 +28,9 @@
 (defn ^:export main []
   (let [game-world (create-world)
         canvas-element (create-canvas)
-        graphics-context (.getContext canvas "2d")]
+        graphics-context (.getContext canvas-element "2d")]
+    (aset canvas-element "onclick" (fn []
+                                       (.log js/console "click event")))
     (letfn [(anim-frame []
               (update game-world)
               (clear-for-frame graphics-context)
