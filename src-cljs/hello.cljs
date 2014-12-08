@@ -23,7 +23,6 @@
     (.clearRect graphics-context 0 0 width height)))
 
 (defn render [graphics-context]
-  (clear-for-frame graphics-context)
   (.fillRect graphics-context 10 20 200 100))
 
 (defn ^:export main []
@@ -31,6 +30,7 @@
         game-world (create-world)]
     (letfn [(anim-frame []
               (update game-world)
+              (clear-for-frame graphics-context)
               (render graphics-context game-world)
               (.requestAnimationFrame js/window anim-frame))]
       (anim-frame))))
