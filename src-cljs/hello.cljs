@@ -8,7 +8,7 @@
     (aset canvas "width" width)
     (aset canvas "height" height)
     (.appendChild js/document.body canvas)
-    (.getContext canvas "2d")))
+    canvas))
 
 (defn create-world []
   (js-obj "bar" "baz"))
@@ -18,16 +18,17 @@
 
 (defn clear-for-frame [graphics-context]
   (let [canvas (aget graphics-context "canvas")
-        width (aget canvas "width")
-        height (aget canvas "height")]
+        height (aget canvas "height")
+        width (aget canvas "width")]
     (.clearRect graphics-context 0 0 width height)))
 
 (defn render [graphics-context]
   (.fillRect graphics-context 10 20 200 100))
 
 (defn ^:export main []
-  (let [graphics-context (create-canvas)
-        game-world (create-world)]
+  (let [game-world (create-world)
+        canvas-element (create-canvas)
+        graphics-context (.getContext canvas "2d")]
     (letfn [(anim-frame []
               (update game-world)
               (clear-for-frame graphics-context)
