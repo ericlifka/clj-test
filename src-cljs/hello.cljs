@@ -21,11 +21,17 @@
         new-rocket {:pos-x (rand-int (aget game-world :width))
                     :pos-y (aget game-world :height)
                     :angle (- 45 (rand-int 90))}]
-    (aset game-world :rockets
-      (conj rockets new-rocket))))
+    (aset game-world
+      :rockets (conj rockets new-rocket))))
 
 (defn update [game-world]
-  (.log js/console "update"))
+  (aset game-world
+    :rockets (map
+               (fn [r]
+                 {:pos-x (get r :pos-x)
+                  :pos-y (- (get r :pos-y) 1)
+                  :angle (get r :angle)})
+               (aget game-world :rockets))))
 
 (defn clear-for-frame [graphics-context]
   (let [canvas (aget graphics-context "canvas")
