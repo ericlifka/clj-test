@@ -10,8 +10,11 @@
     (.appendChild js/document.body canvas)
     canvas))
 
-(defn create-world []
-  (js-obj "rockets" []))
+(defn create-world [canvas-element]
+  (js-obj
+    :width (aget canvas-element "width")
+    :height (aget canvas-element "height")
+    :rockets []))
 
 (defn spawn-random-rocket [game-world]
   )
@@ -29,11 +32,11 @@
   (.fillRect graphics-context 10 20 200 100))
 
 (defn ^:export main []
-  (let [game-world (create-world)
-        canvas-element (create-canvas)
-        graphics-context (.getContext canvas-element "2d")]
-    (aset canvas-element "onclick" (fn []
-                                     (spawn-random-rocket game-world)))
+  (let [canvas-element (create-canvas)
+        graphics-context (.getContext canvas-element "2d")
+        game-world (create-world canvas-element)]
+    (aset canvas-element "onclick"
+      (fn [] (spawn-random-rocket game-world)))
     (letfn [(anim-frame []
               (update game-world)
               (clear-for-frame graphics-context)
