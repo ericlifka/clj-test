@@ -13,6 +13,9 @@
 (defn create-world []
   (js-obj "rockets" []))
 
+(defn spawn-random-rocket [game-world]
+  )
+
 (defn update [game-world]
   (.log js/console "update"))
 
@@ -30,7 +33,7 @@
         canvas-element (create-canvas)
         graphics-context (.getContext canvas-element "2d")]
     (aset canvas-element "onclick" (fn []
-                                       (.log js/console "click event")))
+                                     (spawn-random-rocket game-world)))
     (letfn [(anim-frame []
               (update game-world)
               (clear-for-frame graphics-context)
