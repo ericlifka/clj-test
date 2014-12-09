@@ -11,7 +11,7 @@
     canvas))
 
 (defn create-world []
-  (js-obj "bar" "baz"))
+  (js-obj "rockets" []))
 
 (defn update [game-world]
   (.log js/console "update"))
