@@ -17,7 +17,12 @@
     :rockets []))
 
 (defn spawn-random-rocket [game-world]
-  )
+  (let [rockets (aget game-world :rockets)
+        new-rocket {:pos-x (rand-int (aget game-world :width))
+                    :pos-y (aget game-world :height)
+                    :angle (- 45 (rand-int 90))}]
+    (aset game-world :rockets
+      (conj rockets new-rocket))))
 
 (defn update [game-world]
   (.log js/console "update"))
