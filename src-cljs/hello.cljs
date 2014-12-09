@@ -39,8 +39,12 @@
         width (aget canvas "width")]
     (.clearRect graphics-context 0 0 width height)))
 
-(defn render [graphics-context]
-  (.fillRect graphics-context 10 20 200 100))
+(defn render [graphics-context game-world]
+  (doseq [rocket (aget game-world :rockets)]
+    (.fillRect graphics-context
+      (get rocket :pos-x)
+      (get rocket :pos-y)
+      5 5)))
 
 (defn ^:export main []
   (let [canvas-element (create-canvas)
