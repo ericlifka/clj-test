@@ -31,8 +31,7 @@
 
 (defn update [game-world]
   (aset game-world
-    :rockets (map
-               update-rocket-step
+    :rockets (map update-rocket-step
                (aget game-world :rockets))))
 
 (defn clear-for-frame [graphics-context]
