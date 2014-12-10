@@ -24,13 +24,15 @@
     (aset game-world
       :rockets (conj rockets new-rocket))))
 
+(defn update-rocket-step [rocket]
+  {:pos-x (get rocket :pos-x)
+   :pos-y (- (get rocket :pos-y) 1)
+   :angle (get rocket :angle)})
+
 (defn update [game-world]
   (aset game-world
     :rockets (map
-               (fn [r]
-                 {:pos-x (get r :pos-x)
-                  :pos-y (- (get r :pos-y) 1)
-                  :angle (get r :angle)})
+               update-rocket-step
                (aget game-world :rockets))))
 
 (defn clear-for-frame [graphics-context]
