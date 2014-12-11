@@ -29,9 +29,11 @@
       :rockets (conj rockets new-rocket))))
 
 (defn update-rocket-step [rocket]
-  {:pos-x (get rocket :pos-x)
-   :pos-y (- (get rocket :pos-y) 1)
-   :angle (get rocket :angle)})
+  (let [dir-vector (get rocket :dir-vector)
+        {x-step :x y-step :y} dir-vector]
+    {:pos-x (+ x-step (get rocket :pos-x))
+     :pos-y (+ y-step (get rocket :pos-y))
+     :dir-vector dir-vector}))
 
 (defn update [game-world]
   (aset game-world
