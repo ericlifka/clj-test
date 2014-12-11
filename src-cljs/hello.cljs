@@ -16,11 +16,17 @@
     :height (aget canvas-element "height")
     :rockets []))
 
+(defn random-angle-vector []
+  (let [angle (+ 67.5 (rand-int 45))
+        radians (/ (* 180 angle) Math/PI)]
+    {:x (Math/cos radians)
+     :y (Math/sin radians)}))
+
 (defn spawn-random-rocket [game-world]
   (let [rockets (aget game-world :rockets)
         new-rocket {:pos-x (rand-int (aget game-world :width))
                     :pos-y (aget game-world :height)
-                    :angle (- 45 (rand-int 90))}]
+                    :dir-vector (random-angle-vector)}]
     (aset game-world
       :rockets (conj rockets new-rocket))))
 
