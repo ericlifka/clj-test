@@ -17,10 +17,8 @@
     :rockets []))
 
 (defn random-angle-vector []
-  (let [angle (+ 67.5 (rand-int 45))
-        radians (/ (* 180 angle) Math/PI)]
-    {:x (Math/cos radians)
-     :y (Math/sin radians)}))
+  {:x (- .5 (rand))
+   :y (+ .5 (rand))})
 
 (defn spawn-random-rocket [game-world]
   (let [rockets (aget game-world :rockets)
