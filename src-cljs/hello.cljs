@@ -21,11 +21,13 @@
    :y (- -2.5 (rand))})
 
 (defn spawn-random-rocket [game-world]
-  (let [rockets (aget game-world :rockets)
-        new-rocket {:pos-x (rand-int (aget game-world :width))
-                    :pos-y (aget game-world :height)
+  (let [width (aget game-world :width)
+        height (aget game-world :height)
+        rockets (aget game-world :rockets)
+        new-rocket {:pos-x (rand-int width)
+                    :pos-y height
                     :dir-vector (random-angle-vector)
-                    :remaining-steps (rand-int (aget game-world :height))}]
+                    :threshold (+ 100 (rand (- height 200)))}]
     (aset game-world
       :rockets (conj rockets new-rocket))))
 
