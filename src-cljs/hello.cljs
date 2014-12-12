@@ -18,7 +18,7 @@
 
 (defn random-angle-vector []
   {:x (- .5 (rand))
-   :y (- -0.5 (rand))})
+   :y (- -2.5 (rand))})
 
 (defn spawn-random-rocket [game-world]
   (let [rockets (aget game-world :rockets)
