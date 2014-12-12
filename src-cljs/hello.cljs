@@ -25,7 +25,7 @@
         new-rocket {:pos-x (rand-int (aget game-world :width))
                     :pos-y (aget game-world :height)
                     :dir-vector (random-angle-vector)
-                    :remaining-steps (random-int (aget game-world :height))}]
+                    :remaining-steps (rand-int (aget game-world :height))}]
     (aset game-world
       :rockets (conj rockets new-rocket))))
 
@@ -39,9 +39,11 @@
      :remaining-steps (- steps 1)}))
 
 (defn update [game-world]
-  (aset game-world
-    :rockets (map update-rocket-step
-               (aget game-world :rockets))))
+  (let [rockets (map update-rocket-step
+                  (aget game-world :rockets))
+        spent (filter #(= 0 (get % :remaining-steps)) rockets)
+        remaining (filter #(not= 0 (get % :remaining-steps)) rockets)]
+    (aset game-world :rockets remaining)))
 
 (defn clear-for-frame [graphics-context]
   (let [canvas (aget graphics-context "canvas")
