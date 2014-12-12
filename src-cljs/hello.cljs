@@ -24,7 +24,8 @@
   (let [rockets (aget game-world :rockets)
         new-rocket {:pos-x (rand-int (aget game-world :width))
                     :pos-y (aget game-world :height)
-                    :dir-vector (random-angle-vector)}]
+                    :dir-vector (random-angle-vector)
+                    :remaining-steps (random-int (aget game-world :height))}]
     (aset game-world
       :rockets (conj rockets new-rocket))))
 
