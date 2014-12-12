@@ -30,11 +30,13 @@
       :rockets (conj rockets new-rocket))))
 
 (defn update-rocket-step [rocket]
-  (let [dir-vector (get rocket :dir-vector)
+  (let [steps (get rocket :remaining-steps)
+        dir-vector (get rocket :dir-vector)
         {x-step :x y-step :y} dir-vector]
     {:pos-x (+ x-step (get rocket :pos-x))
      :pos-y (+ y-step (get rocket :pos-y))
-     :dir-vector dir-vector}))
+     :dir-vector dir-vector
+     :remaining-steps (- steps 1)}))
 
 (defn update [game-world]
   (aset game-world
