@@ -43,8 +43,8 @@
 (defn update [game-world]
   (let [rockets (map update-rocket-step
                   (aget game-world :rockets))
-        spent (filter #(= 0 (get % :remaining-steps)) rockets)
-        remaining (filter #(not= 0 (get % :remaining-steps)) rockets)]
+        spent (filter #(>= (get % :pos-y) (get % :threshold)) rockets)
+        remaining (filter #(< (get % :pos-y) (get % :threshold)) rockets)]
     (aset game-world :rockets remaining)))
 
 (defn clear-for-frame [graphics-context]
