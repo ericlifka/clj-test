@@ -38,7 +38,7 @@
     {:pos-x (+ x-step (get rocket :pos-x))
      :pos-y (+ y-step (get rocket :pos-y))
      :dir-vector dir-vector
-     :remaining-steps (- steps 1)}))
+     :threshold (get rocket :threshold)}))
 
 (defn update [game-world]
   (let [rockets (map update-rocket-step
