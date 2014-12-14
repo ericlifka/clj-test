@@ -40,12 +40,19 @@
      :dir-vector dir-vector
      :threshold (get rocket :threshold)}))
 
+(defn generate-explosion [rocket]
+  )
+
 (defn update [game-world]
   (let [rockets (map update-rocket-step
                   (aget game-world :rockets))
         spent (filter #(<= (get % :pos-y) (get % :threshold)) rockets)
         remaining (filter #(> (get % :pos-y) (get % :threshold)) rockets)]
-    (aset game-world :rockets remaining)))
+    (aset game-world
+      :rockets remaining)
+    (aset game-world
+      :explosions (into (aget game-world :explosions)
+                    (map generate-explosion spent)))))
 
 (defn clear-for-frame [graphics-context]
   (let [canvas (aget graphics-context "canvas")
